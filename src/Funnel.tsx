@@ -3,6 +3,7 @@ import { Box } from "@mui/material";
 import { ResponsiveFunnel, type FunnelPart } from "@nivo/funnel";
 
 interface FunnelDatum {
+  [key: string]: string | number;
   id: string;
   value: number;
   label: string;
@@ -34,7 +35,7 @@ const CustomLayer: FC<CustomLayerProps> = ({ parts }) => (
         dominantBaseline="central"
         style={{ fill: "white", fontSize: 12, fontWeight: 700 }}
       >
-        {part.data.label}
+        {part.data.label as string}
       </text>
     ))}
   </>
