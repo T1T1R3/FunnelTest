@@ -1,8 +1,6 @@
-// src/components/Funnel.tsx
-
-import React, { FC } from "react";
+import { type FC } from "react";
 import { Box } from "@mui/material";
-import { ResponsiveFunnel, type FunnelSvgProps } from "@nivo/funnel";
+import { ResponsiveFunnel, type FunnelPart } from "@nivo/funnel";
 
 interface FunnelDatum {
   id: string;
@@ -19,8 +17,13 @@ const testFunnel: FunnelDatum[] = [
   { id: "4", value: value * 0.8, label: "Comprou" },
 ];
 
+// Type for the custom layer props
+type CustomLayerProps = {
+  parts: FunnelPart<FunnelDatum>[];
+};
+
 // custom layer to render labels above each part
-const CustomLayer: FunnelSvgProps<FunnelDatum>["layers"][2] = ({ parts }) => (
+const CustomLayer: FC<CustomLayerProps> = ({ parts }) => (
   <>
     {parts.map((part, index) => (
       <text
